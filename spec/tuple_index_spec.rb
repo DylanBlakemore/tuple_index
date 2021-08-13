@@ -1,11 +1,13 @@
-# frozen_string_literal: true
+require "spec_helper"
 
 RSpec.describe TupleIndex do
   it "has a version number" do
     expect(TupleIndex::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  describe ".new" do
+    it "creates a new container instance" do
+      expect(TupleIndex.new([], [])).to be_a(TupleIndex::Container)
+    end
   end
 end

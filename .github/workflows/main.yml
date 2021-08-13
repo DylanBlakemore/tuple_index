@@ -1,16 +1,24 @@
-name: Ruby
+env:
+  RUBY_VERSION: '2.7.2'
 
-on: [push,pull_request]
-
+name: Tests
+on: [push, pull_request]
 jobs:
-  build:
+  rspec-test:
+    name: Rspec
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.7.1
-        bundler-cache: true
-    - name: Run the default task
-      run: bundle exec rake
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+      - name: Run tests
+        run: bundler exec rspec
+      - name: Upload coverage results
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage

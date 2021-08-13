@@ -1,15 +1,23 @@
-# frozen_string_literal: true
+require 'bundler/setup'
+require 'pry'
+require 'simplecov'
 
-require "tuple_index"
+SimpleCov.start do
+  add_filter "/spec/"
+  minimum_coverage 100
+  maximum_coverage_drop 0
+end
+
+require 'tuple_index'
+
+Bundler.setup
+
+def suppress_log_output
+  allow(STDOUT).to receive(:puts)
+end
 
 RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
-
-  # Disable RSpec exposing methods globally on `Module` and `main`
-  config.disable_monkey_patching!
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+  config.before(:each) do
+    suppress_log_output
   end
 end

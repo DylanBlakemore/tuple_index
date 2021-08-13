@@ -1,10 +1,15 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in tuple_index.gemspec
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
 gemspec
 
-gem "rake", "~> 13.0"
+group :test do
+  gem "rspec"
+  gem "simplecov", :require => false
+end
 
-gem "rspec", "~> 3.0"
+group :test, :development do
+  gem "pry"
+  gem "pry-byebug"
+end
