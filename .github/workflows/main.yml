@@ -8,10 +8,12 @@ jobs:
     name: Rspec
     runs-on: ubuntu-latest
     steps:
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ env.RUBY_VERSION }}
-          bundler-cache: true
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            ruby-version: ${{ env.RUBY_VERSION }}
+            bundler-cache: true
       - name: Run tests
         run: bundler exec rspec
       - name: Upload coverage results
