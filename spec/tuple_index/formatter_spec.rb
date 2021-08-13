@@ -1,3 +1,5 @@
+require "spec_helper"
+
 RSpec.describe TupleIndex::Formatter do
   
   subject { described_class.new(tuples, indexes, fields) }

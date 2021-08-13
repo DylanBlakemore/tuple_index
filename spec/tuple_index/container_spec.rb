@@ -1,3 +1,5 @@
+require "spec_helper"
+
 RSpec.describe TupleIndex::Container do
 
   subject { described_class.new(tuples, indexes) }
@@ -75,7 +77,7 @@ RSpec.describe TupleIndex::Container do
     let(:result) { subject[slice] }
 
     context "when the argument is a string" do
-      let(:slice) { ["word_1"] }
+      let(:slice) { "word_1" }
 
       it "slices out a property" do
         expect(result).to be_a(described_class)

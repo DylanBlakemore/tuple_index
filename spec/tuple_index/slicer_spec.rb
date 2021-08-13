@@ -1,3 +1,5 @@
+require "spec_helper"
+
 RSpec.describe TupleIndex::Slicer do
   let(:tuples) do
     [

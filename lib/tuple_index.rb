@@ -8,7 +8,6 @@ require_relative "tuple_index/formatter"
 require_relative "tuple_index/container"
 
 module TupleIndex
-  class Error < StandardError; end
   class IndexMismatchError < StandardError; end
 
   def self.new(tuples, indexes)
